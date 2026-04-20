@@ -11,3 +11,10 @@ console.log(x); // 10
 console.log(y);  //error
 let y = 20;
 //let and const are hoisted but NOT initialized. Accessing them before declaration throws a ReferenceError. This period is called the Temporal Dead Zone (TDZ).
+
+
+console.log(z);  //error
+let z;
+console.log(z);  //undefined
+z = 30;
+console.log(z); //30
