@@ -1,0 +1,29 @@
+function safeGet(obj, path) { 
+  const parts = path.split(".");
+  let current = obj;
+  
+  for(const part of parts){
+      if(current == null || typeof current !== "object"){
+          return undefined;
+      }
+      
+      current = current[part];
+  }
+  return current;
+}
+
+const data = {
+  user: {
+    name: "Alice",
+    address: {
+      city: "New York",
+      zip: "10001"
+    }
+  }
+}; 
+console.log(safeGet(data, "user.name"));         // should print "Alice"
+console.log(safeGet(data, "user.address.city")); // should print "New York"
+console.log(safeGet(data, "user.phone"));        // should print undefined
+console.log(safeGet(data, "user.address.country")); // should print undefined
+console.log(safeGet(data, "user.address.zip"));   //should print "10001"
+console.log(safeGet(data, "user.address.zip.code"));  // should print undefined
